@@ -1,0 +1,135 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+
+header {
+    height: 8%;
+    background-color: black;
+}
+
+/*CSS personnalisé*/
+.nomLogo {
+    font-size: 30px;
+    font-family: 'Bangers';
+    color: #45BF55;
+}
+.navigation {
+   /* height: 84%;*/
+   height:92%;
+   
+}
+.navigation_layout {
+    width: 13%;
+    background-color: #222222;
+}
+
+.render_layout {
+    width: 87%;
+}
+
+
+.nav-item {
+    border: 1px solid #45BF55;
+    border-radius:6px;
+    margin: 10px;
+    background-color:black;
+}
+.nav-link {
+    color: white;
+}
+
+.nav-item:hover{
+    background-color: #45BF55; 
+}
+.nav-link:hover {
+    color: black;
+}
+/*Gestion Stock*/
+
+#datas {
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+h4 {
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.btn {
+    margin-left: 58px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+
+.table td, .table th {
+    text-align: center;
+}
+
+#messageAlert {
+    width: 30%;
+    margin: auto;
+    padding:10px;
+    color:white;
+}

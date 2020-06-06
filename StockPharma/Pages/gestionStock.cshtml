@@ -1,0 +1,154 @@
+﻿@page
+@model StockPharma.Web.Pages.gestionStockModel
+@{
+    ViewData["Title"] = "Gestion de Stock";
+}
+
+<div class="container">
+
+    <form method="post" id="frmPrincipale">
+
+
+
+            <div  class='d-flex justify-content-between @((Model.message!=null) ? "visible" : "invisible")  @((Model.message =="Médicament Error" || Model.message =="Ce Medicament existe déja") ? "bg-danger" : "bg-success")' id="messageAlert">
+
+                <div> @Model.message</div>
+               
+                <button type="button"  class="close" id="buttonMessageAlert">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+
+
+
+        <button type="submit" class="btn btn-success mt-1" asp-page-handler="OuvrirAjout" id="boutonAjout">  <i class="fa fa-plus" aria-hidden="true"></i> Ajouter un medicament</button>
+
+        <div id="datas">
+            <table class="table table-striped table-bordered table-sm" cellspacing="0" id="tableAffichageMedicament">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Designation</th>
+                        <th scope="col">Dosage</th>
+                        <th scope="col">Forme</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        foreach (var medicament in Model.ListeMedicaments)
+                        {
+                            <tr>
+                                <td>@medicament.designation</td>
+                                <td>@medicament.dose</td>
+                                <td>@medicament.type</td>
+                                <td>@medicament.quantite</td>
+                                <td class="p-0 pt-1 align-items-center">
+                                    <span> <button type="reset" class="btn btn-dark m-0 mr-2 btn-sm">Modifier</button></span>
+                                    <span><button type="submit" class="btn btn-danger m-0 ml-2  btn-sm" asp-page-handler="OuvrirSuppression" asp-route-id="@medicament.Id">Supprimer</button></span>
+                                    
+                                </td>
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
+    </form>
+
+
+</div>
+
+@if (Model.action !=null)
+{
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@if (Model.action == "AJOUT") {<span>Ajouter un médicament </span>} else { <span>Supprimer un médicament </span>}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        @if (Model.action == "AJOUT")
+                        {
+                            <label asp-for="medoc.designation" class="col-5"></label>
+                            <input asp-for="medoc.designation" class="pl-1" />
+                            <br>
+                            <label asp-for="medoc.dose" class="col-5"></label>
+                            <input asp-for="medoc.dose" class="pl-1" />
+                            <br>
+                            <label asp-for="medoc.type" class="col-5"></label>
+                            <input asp-for="medoc.type" class="pl-1" />
+                            <br>
+                            <label asp-for="medoc.quantite" class="col-5"></label>
+                            <input asp-for="medoc.quantite" class="pl-1" />
+                            <br />
+                        }
+                        else { 
+                            <div class="text-center">
+                                Vous etes sur le point de supprimer <span class="text-muted">@Model.medoc.designation</span>
+                            </div>
+                        }
+
+
+                    <div class="d-flex justify-content-end container-fluid col-10">
+                        <button type="reset" class="btn btn-danger ml-5 ">Annuler</button>
+
+                        @if (Model.action == "AJOUT")
+                        {
+                            <button type="submit" class="btn btn-success ml-1" asp-page-handler="AjouterMedicament">Ajouter</button>
+                        }
+                        else
+                        {
+
+                            <button type="submit" class="btn btn-success ml-1" asp-page-handler="SupprimerMedicament" asp-route-id="@Model.medoc.Id">Supprimer</button>
+                        }
+
+                    </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @Html.HiddenFor(m=>m.action,new { @id = "hiddenAction"})
+}
+
+
+<script>
+    $(document).ready(function () {
+        $('#tableAffichageMedicament').DataTable({
+            "pagingType": "full",
+            "lengthMenu": [[8, 10], [8, 10]],
+            "oLanguage": {
+                "sSearch": "Rechercher"
+            }
+        });
+
+        if ($('#hiddenAction') != null) {
+            console.log("zoxoxox");
+            $('#exampleModal').modal('show');
+        }
+
+
+        $('#buttonMessageAlert').click(function () {
+            $('#messageAlert').removeClass("visible");
+            $('#messageAlert').css("visibility","hidden");
+        })
+
+       $('.containButton').click(() => {
+            $('#frmPrincipale').submit();
+       })
+    });
+</script>
+

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - StockPharma</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <header class="d-flex align-items-center justify-content-between">
+        <span class="ml-3 nomLogo">
+            StockPharma
+        </span>
+        <span class="mr-4">
+            Profil
+        </span>
+    </header>
+    <div class="navigation d-flex flex-row justify-content-between">
+        <div class="navigation_layout ">
+            <ul class="nav flex-column align-content-center">
+                <li class="nav-item text-center">
+                    <a class="nav-link active" href="../gestionStock">Gérer Stock</a>
+                </li>
+                <li class="nav-item text-center">
+                    <a class="nav-link" href="#">Vendre Produits</a>
+                </li>
+                <li class="nav-item text-center">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+        </div>
+        <main role="main" class="render_layout">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
