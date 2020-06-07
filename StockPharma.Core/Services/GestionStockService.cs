@@ -33,5 +33,10 @@ namespace StockPharma.Core.Services
         public  void delete(int id) {
             InterfaceStockPharma.delete(id);
         }
+
+        public bool update(Medicament medoc) {
+
+            return InterfaceStockPharma.update(medoc);
+        }
     }
 }

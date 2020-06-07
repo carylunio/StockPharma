@@ -55,6 +55,34 @@ namespace StockPharma.Infrastructure.Repository
             ContextStock.SaveChanges();
         }
 
+        public bool update(Medicament medoc)
+        {
+            var retour =false;
+            if (verifierExistenceMedicament(medoc))
+            {
+
+                var medicamenTemp = ContextStock.medicaments.Find(medoc.Id);
+
+                if (medicamenTemp != null)
+                {
+
+                    medicamenTemp.designation = medoc.designation;
+                    medicamenTemp.dose = medoc.dose;
+                    medicamenTemp.type = medoc.type;
+
+                    ContextStock.SaveChanges();
+
+                    retour= true;
+                }
+
+
+            }
+            else
+                retour = false;
+
+            return retour;
+        }
+
        public bool verifierExistenceMedicament(Medicament medoc) {
 
             var nombreMedicament = (from medicament in ContextStock.medicaments

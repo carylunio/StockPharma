@@ -66,11 +66,34 @@ namespace StockPharma.Web.Pages
             return OnGet();
         }
 
+        public IActionResult OnPostOuvrirModification(int Id)
+        {
+
+            action = "MODIFICATION";
+
+            medoc = InterfaceServiceStockPharma.getByID(Id);
+
+            return OnGet();
+        }
+
         public IActionResult OnPostSupprimerMedicament(int id)
         {
             InterfaceServiceStockPharma.delete(id);
 
             message = "Medicament Supprimé";
+
+            return OnGet();
+        }
+
+
+        public IActionResult OnPostModifierMedicament(int Id) {
+
+            medoc.Id = Id;
+            if (InterfaceServiceStockPharma.update(medoc)) {
+
+                message = medoc.designation + "Modifié";
+            }else
+                message = "Ce medicament existe déja";
 
             return OnGet();
         }

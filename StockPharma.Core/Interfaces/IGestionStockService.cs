@@ -15,5 +15,7 @@ namespace StockPharma.Core.Interfaces
         bool add(Medicament medoc);
 
         void delete(int id);
+
+        bool update(Medicament medoc);
     }
 }
