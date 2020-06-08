@@ -38,5 +38,9 @@ namespace StockPharma.Core.Services
 
             return InterfaceStockPharma.update(medoc);
         }
+
+        public IEnumerable<Medicament> rechercherMedicament(string medocRecherche) {
+            return InterfaceStockPharma.rechercherMedicament(medocRecherche);
+        }
     }
 }

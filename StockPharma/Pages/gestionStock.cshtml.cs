@@ -25,21 +25,21 @@ namespace StockPharma.Web.Pages
         public string action;
 
         public string message;
-        public IActionResult OnGet()
+        public void OnGet()
         {
             ListeMedicaments = InterfaceServiceStockPharma.getAll().ToList();
 
-            return this.Page();
+            //return this.Page();
         }
 
-        public IActionResult OnPostOuvrirAjout()
+        public void OnPostOuvrirAjout()
         {
 
             action = "AJOUT";
-            return OnGet();
+            OnGet();
         }
 
-        public IActionResult OnPostAjouterMedicament() {
+        public void OnPostAjouterMedicament() {
 
             if (medoc != null) {
                
@@ -52,41 +52,41 @@ namespace StockPharma.Web.Pages
                 message = "Médicament Error";
 
 
-            return OnGet();
+            OnGet();
         }
 
 
-        public IActionResult OnPostOuvrirSuppression(int Id)
+        public void OnPostOuvrirSuppression(int Id)
         {
 
             action = "SUPPRESSION";
 
             medoc = InterfaceServiceStockPharma.getByID(Id);
 
-            return OnGet();
+             OnGet();
         }
 
-        public IActionResult OnPostOuvrirModification(int Id)
+        public void OnPostOuvrirModification(int Id)
         {
 
             action = "MODIFICATION";
 
             medoc = InterfaceServiceStockPharma.getByID(Id);
 
-            return OnGet();
+             OnGet();
         }
 
-        public IActionResult OnPostSupprimerMedicament(int id)
+        public void OnPostSupprimerMedicament(int id)
         {
             InterfaceServiceStockPharma.delete(id);
 
             message = "Medicament Supprimé";
 
-            return OnGet();
+             OnGet();
         }
 
 
-        public IActionResult OnPostModifierMedicament(int Id) {
+        public void OnPostModifierMedicament(int Id) {
 
             medoc.Id = Id;
             if (InterfaceServiceStockPharma.update(medoc)) {
@@ -95,7 +95,7 @@ namespace StockPharma.Web.Pages
             }else
                 message = "Ce medicament existe déja";
 
-            return OnGet();
+            OnGet();
         }
 
 

@@ -19,5 +19,7 @@ namespace StockPharma.Core.Interfaces
         bool update(Medicament medoc);
 
         bool verifierExistenceMedicament(Medicament medoc);
+
+        IEnumerable<Medicament> rechercherMedicament(string medocRecherche);
     }
 }

@@ -1,0 +1,62 @@
+﻿@page
+@model StockPharma.Web.Pages.OperationModel
+@{
+    ViewData["Title"] = "Opération";
+}
+<div class="d-flex justify-content-around p-5">
+
+    <div id="medicamentResearch" class="d-flex align-items-center flex-column">
+        <input id="inputResearch" placeholder="Entrez le nom du médicament recherché" />
+        <div id="resultatResearch"></div>
+    </div>
+
+    <div id="visualVente" class="text-center">
+        <span>Visualisation vente</span>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#inputResearch').keyup(() => {
+            var entry = $('#inputResearch').val();
+            $('#resultatResearch').css("border-bottom", "1px solid black");
+            $('#resultatResearch').css("border-left", "1px solid black");
+            $('#resultatResearch').css("border-right", "1px solid black");
+            console.log(entry);
+            $('#resultatResearch').html(" ");
+            if (entry.length != 0) {
+                $.ajax({
+                    type: 'GET',
+                    url: '?handler=MedicamentResearch',
+                    data: { value: JSON.stringify(entry) },
+                    dataType: "text",
+                    success: function (result) {
+
+                        var obj = JSON.parse(result);
+                        console.log(obj);
+                        var renduResultat = "";
+                        if (obj.length != 0) {
+                            for (var i = 0; i < obj.length; i++) {
+
+                                renduResultat = "<div class='choixMedicament d-flex '><div class='cmMedicament'>" + obj[i].designation + " " + obj[i].dose + " " + obj[i].type + '</div><div  class="cmButton justify-content-around d-flex align-items-center"><span> <button class="btn-sm btn-dark">Approvisionner</button></span>' + '<span><button class="btn-sm btn-success">Vendre</button></span></div>' + "<div>";
+                                $('#resultatResearch').append(renduResultat);
+                            }
+                        } else {
+                            $('#resultatResearch').html(" ");
+                        }
+
+
+
+                    }
+                });
+            } else {
+                $('#resultatResearch').css("border", "none");
+            }
+
+        });
+
+    });
+</script>
+
+

@@ -49,8 +49,7 @@ namespace StockPharma.Infrastructure.Repository
 
         public void delete(int id)
         {
-          
-           // ContextStock.medicaments.Attach(medoc);
+         
             ContextStock.medicaments.Remove(ContextStock.medicaments.Find(id));
             ContextStock.SaveChanges();
         }
@@ -96,6 +95,17 @@ namespace StockPharma.Infrastructure.Repository
 
 
             return true;
+        }
+
+        public IEnumerable<Medicament> rechercherMedicament(string medocRecherche) {
+
+            var listePotentielMedoc = (from medoc in ContextStock.medicaments
+                                      where medoc.designation.ToLower().Contains(medocRecherche.ToLower()) || medoc.designation.ToLower().StartsWith(medocRecherche.ToLower())
+                                      || medoc.designation.ToLower().EndsWith(medocRecherche.ToLower())
+                                      select medoc).Take(6);
+
+
+            return listePotentielMedoc;
         }
 
     }

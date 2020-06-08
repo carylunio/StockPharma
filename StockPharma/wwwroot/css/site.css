@@ -133,3 +133,43 @@ h4 {
     padding:10px;
     color:white;
 }
+/*Css Opération*/
+
+#medicamentResearch {
+    width:60%;
+    /*background-color:red;*/
+}
+#visualVente {
+    width: 40%;
+    background-color: yellow;
+}
+#inputResearch {
+    width: 80%;
+    height:38px;
+    border: 2px solid black;
+    border-radius:5px;
+    padding:10px;
+}
+#resultatResearch {
+    width: 80%;
+}
+
+.choixMedicament {
+    width: 95%;
+
+    padding: 3px;
+    margin: 5px;
+}
+
+.choixMedicament:hover {
+        background-color: #e2e2e2;
+}
+
+.cmButton {
+    width: 43%;
+}
+
+.cmMedicament {
+    width: 57%;
+    font-weight:bold;
+}

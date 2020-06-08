@@ -17,5 +17,8 @@ namespace StockPharma.Core.Interfaces
         void delete(int id);
 
         bool update(Medicament medoc);
+
+        IEnumerable<Medicament> rechercherMedicament(string medocRecherche);
+
     }
 }
